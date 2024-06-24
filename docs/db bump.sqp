@@ -1,0 +1,62 @@
+horo db
+
+-- Create roles table
+CREATE TABLE tbl_roles (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255),
+  description TEXT
+);
+
+-- Create permissions table
+CREATE TABLE tbl_permissions (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255),
+  description TEXT
+);
+
+-- Create staffs table
+CREATE TABLE tbl_staffs (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  fname VARCHAR(50),
+  mname VARCHAR(50),
+  lname VARCHAR(50),
+  email VARCHAR(50),
+  address VARCHAR(50),
+  mobile VARCHAR(20),
+  position VARCHAR(255)
+);
+
+-- Create clients table
+CREATE TABLE tbl_clients (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  fname VARCHAR(50),
+  mname VARCHAR(50),
+  lname VARCHAR(50),
+  email VARCHAR(50),
+  address VARCHAR(50),
+  mobile VARCHAR(20),
+  company VARCHAR(255),
+  contact_person VARCHAR(255)
+);
+
+-- Create users table
+CREATE TABLE tbl_users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255),
+  email VARCHAR(255),
+  role_id INT,
+  staff_id INT,
+  client_id INT,
+  FOREIGN KEY (role_id) REFERENCES roles(id),
+  FOREIGN KEY (staff_id) REFERENCES staffs(id),
+  FOREIGN KEY (client_id) REFERENCES clients(id)
+);
+
+-- Create user_logins table
+CREATE TABLE tbl_user_logins (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  user_id INT,
+  username VARCHAR(255),
+  password VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
